@@ -26,7 +26,7 @@ LAST_MESSAGE=$(sed '2q;d' /tmp/commit_params_history.txt);
 echo "${BLUE}That much ?? What did you do all this time (commit message) ${GREEN}(default: "$LAST_MESSAGE"): ${RED}\c"
 read MESSAGE
 echo ${MESSAGE} >> /tmp/commit_params_history.txt
-if test -z ${MESSAGE}; then MESSAGE=$LAST_MESSAGE; else echo ${MESSAGE} >> /tmp/commit_params_history.txt; fi
+if test -z ${MESSAGE}; then MESSAGE=${LAST_MESSAGE}; else echo ${MESSAGE} >> /tmp/commit_params_history.txt; fi
 echo "${YELLOW}Ok then message will be: ${RED}"$MESSAGE
 
 #Build the command and fire it
