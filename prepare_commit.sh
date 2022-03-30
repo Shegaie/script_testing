@@ -19,7 +19,7 @@ LAST_TIME=$(sed '1q;d' /tmp/commit_params_history.txt);
 echo "${BLUE}Was it long ? Like how long ? (Format is 'h' for hour and 'm' for minutes) ${GREEN}(default: "$LAST_TIME"): ${RED}\c"
 read TIME
 if test -z ${TIME}; then TIME=$LAST_TIME; else echo ${TIME} > /tmp/commit_params_history.txt; fi
-echo "${YELLOW}Ok then time will be: ${GREEN}"$TIME
+echo "${YELLOW}Ok then time will be: ${RED}"$TIME
 
 #Ask what you did on this commit
 LAST_MESSAGE=$(sed '2q;d' /tmp/commit_params_history.txt);
@@ -27,7 +27,7 @@ echo "${BLUE}That much ?? What did you do all this time (commit message) ${GREEN
 read MESSAGE
 echo ${MESSAGE} >> /tmp/commit_params_history.txt
 if test -z ${MESSAGE}; then MESSAGE=$LAST_MESSAGE; else echo ${MESSAGE} >> /tmp/commit_params_history.txt; fi
-echo "${YELLOW}Ok then message will be: ${GREEN}"$MESSAGE
+echo "${YELLOW}Ok then message will be: ${RED}"$MESSAGE
 
 #Build the command and fire it
 echo "${NC}"
