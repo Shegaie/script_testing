@@ -42,7 +42,7 @@ FORMATTED_MESSAGE=$JIRA_BRANCH_IDENTIFIER" #time "$TIME" #comment "$MESSAGE
 echo -e "${BLUE}Seems good to you ? \n => ${RED}"$GIT" commit -m '"$FORMATTED_MESSAGE"'${NC}"
 select yn in "Yes" "No"; do
     case $yn in
-        Yes ) ${GIT} commit -m "'$FORMATTED_MESSAGE'"; break;;
+        Yes ) ${GIT} commit -m "$FORMATTED_MESSAGE"; break;;
         No ) exit;;
     esac
 done
