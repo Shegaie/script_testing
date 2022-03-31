@@ -12,18 +12,20 @@ cd ${REPO_DIR}
 
 #Get jira branch identifier from your current branch
 JIRA_BRANCH_IDENTIFIER=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
-echo -e "\n${YELLOW}Jira branch identifier will be => ${RED}"$JIRA_BRANCH_IDENTIFIER
+echo -e "\n${YELLOW}Jira branch identifier will be => ${RED}"$JIRA_BRANCH_IDENTIFIER"\n"
 
 #Ask you the time you spent on this commit
 LAST_TIME=$(sed '1q;d' /tmp/commit_params_history.txt);
-echo -e "${BLUE}Was it long ? Like how long ? (Format is 'h' for hour and 'm' for minutes) ${GREEN}(default: "$LAST_TIME"): ${RED}\c"
+echo -e "${BLUE}Was it long ? Like how long ? (Format is 'h' for hour and 'm' for minutes)"
+if test -z "$LAST_TIME";then echo -e "${NC}(default: None): \c";else echo -e "${NC}(default: ${GREEN}"$LAST_TIME"${NC}): \c";fi
 read TIME
 if test -z ${TIME}; then TIME=$LAST_TIME; else echo ${TIME} > /tmp/commit_params_history.txt; fi
-echo -e "${YELLOW}Ok then time will be => ${RED}"$TIME
+echo -e "${YELLOW}Ok then time will be => ${RED}"$TIME"\n"
 
 #Ask what you did on this commit
 LAST_MESSAGE=$(sed '2q;d' /tmp/commit_params_history.txt);
-echo -e "${BLUE}That much ?? What did you do all this time (commit message) ${GREEN}(default: "$LAST_MESSAGE"): ${RED}\c"
+echo -e "${BLUE}That much ?? What did you do all this time (commit message)"
+if test -z "$LAST_MESSAGE";then echo -e "${NC}(default: None): \c";else echo -e "${NC}(default: ${GREEN}"$LAST_MESSAGE"${NC}): \c";fi
 read MESSAGE
 echo ${MESSAGE} >> /tmp/commit_params_history.txt
 
